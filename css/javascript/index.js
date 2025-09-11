@@ -1,14 +1,14 @@
 function updateTime() {
 
 
-    let losAngelesElement = document.querySelector("#los-angeles");
-    if (losAngelesElement) {
-        let losAngelesDateElement = losAngelesElement.querySelector(".date");
-        let losAngelesTimeElement = losAngelesElement.querySelector(".time");
-        losAngelesTime = moment().tz("America/Los_Angeles");
+    let southAfricaElement = document.querySelector("#south-africa");
+    if (southAfricaElement) {
+        let southAfricaDateElement = southAfricaElement.querySelector(".date");
+        let southAfricaTimeElement = southAfricaElement.querySelector(".time");
+        southAfricaTime = moment().tz("Africa/South_Africa");
 
-        losAngelesDateElement.innerHTML = losAngelesTime.format("MMMM D YYYY");
-        losAngelesTimeElement.innerHTML = losAngelesTime.format("hh:mm:ss [<small>] A[</small>]");
+        southAfricaDateElement.innerHTML = southAfricaTime.format("MMMM D YYYY");
+        southAfricaTimeElement.innerHTML = southAfricaTime.format("hh:mm:ss [<small>] A[</small>]");
     }
 
 
@@ -24,7 +24,13 @@ function updateTime() {
 }
 function updatecity(event) {
     let cityTimeZone = event.target.value;
-    let cityName = cityTimeZone.replace("_", "").split("/")[1];
+    if (cityTimeZone === "current") {
+        cityTimeZone = moment().tz.guesss();
+    }
+
+
+
+    let cityName = cityTimeZone.replace("_", " ").split("/")[1];
     let cityTime = moment().tz(cityTimeZone);
     let citiesElememt = document.querySelector("#cities");
     
